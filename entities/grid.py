@@ -42,6 +42,8 @@ class Grid(ABC):
 
 	def check_grid(self, my_dict: Dict[str, str]) -> bool:
 		try_grid = self.replace_grid(my_dict)
+		self.print()
+		print('----------')
 		return all(boh.check() for boh in try_grid)
 
 	def get_unique_values(self) -> Set[str]:
@@ -63,12 +65,11 @@ class Grid(ABC):
 		for combo in itertools.permutations(Numbers.numbers, k):
 			my_dict = generate_dict(list(self.get_unique_values()),
 									list(combo))
+
 			if self.check_grid(my_dict):
-				self.print()
 				#  self.print_solution()
 				self.solution = my_dict
 				print(my_dict)
-				print('----------')
 				return 0
 		print('Sorry, no solution!')
 		return 1
